@@ -1,0 +1,6 @@
+build/
+*.un~
+*.swp
+*.pdf
+*.html
+TutorialGMLTX/
