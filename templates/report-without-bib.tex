@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+\usepackage[multidot]{grffile}
+\usepackage{paralist}
+\usepackage{amsmath}
+\usepackage{ifxetex}
+\usepackage[boldfont,slantfont,CJKsetspaces,CJKchecksingle]{xeCJK}
+\ifxetex
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+
+\setCJKmainfont{宋体}
+\setCJKsansfont{Kaiti}
+\setCJKmonofont{SimSun}
+\punctstyle{quanjiao}
+
+
+\else
+\usepackage[mathletters]{ucs}
+\usepackage[utf8x]{inputenc}
+\fi
+\usepackage{microtype}
+\pagenumbering{arabic}
+
+
+\usepackage{listings}
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+\usepackage{ctable}
+\usepackage{float}
+\usepackage{etoolbox}
+
+% 中文标签
+\renewcommand\contentsname{目录}
+\renewcommand\figurename{图}
+\renewcommand\tablename{表}
+\renewcommand\refname{参考文献}
+
+% footnote
+%\renewcommand{\thefootnote}{\arabic{footnote}}
+\usepackage{ccaption}
+
+% 图片
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
+\newcommand\TwoSubFig[7]{% CaptionLabel Image1 Caption1Label1 Width1 Image2 ...
+  \sbox\IBoxA{\includegraphics[width=#4\textwidth]{#2}}
+  \sbox\IBoxB{\includegraphics[width=#7\textwidth]{#5}}%
+  \ifdim\ht\IBoxA>\ht\IBoxB
+    \setlength\IHeight{\ht\IBoxB}\else\setlength\IHeight{\ht\IBoxA}\fi%
+  \begin{figure}
+  \centering
+  \begin{subfigure}{#4\textwidth}\centering
+  \includegraphics[height=\IHeight]{#2}
+  #3
+  \end{subfigure}\hfill
+  \begin{subfigure}{#7\textwidth}\centering
+  \includegraphics[height=\IHeight]{#5}
+  #6
+  \end{subfigure}
+  #1
+  \end{figure}%
+}
+
+% table
+\usepackage{tabularx}
+\usepackage{booktabs}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+% This is needed because raggedright in table elements redefines \\:
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS=\PreserveBackslash
+\usepackage[normalem]{ulem}
+\newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
+\usepackage[breaklinks=true,linktocpage,pdftitle={$title$},pdfauthor={$for(author)$$author$$sep$; $endfor$},xetex,colorlinks]{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+$if(numbersections)$
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(title)$
+\title{$title$}
+$endif$
+\author{$for(author)$$author$$sep$\\$endfor$}
+$if(date)$
+\date{$date$}
+$endif$
+
+\begin{document}
+$if(title)$
+\maketitle
+$endif$
+
+$if(toc)$
+\newpage
+\tableofcontents
+\newpage
+$endif$
+
+$body$
+\end{document}
