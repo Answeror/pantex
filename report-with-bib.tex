@@ -1,10 +1,4 @@
 \documentclass[12pt]{article}
-\usepackage{url}
-\makeatletter
-\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
-\makeatother
-
-\usepackage{paralist}
 \usepackage{amsmath}
 \usepackage{ifxetex}
 \usepackage[boldfont,slantfont,CJKsetspaces,CJKchecksingle]{xeCJK}
@@ -36,17 +30,16 @@
 \usepackage{float}
 \usepackage{etoolbox}
 
-% tick and cross symbols
-\usepackage{amsfonts}
-\newcommand{\tickyes}{\checkmark}
-\usepackage{pifont}
-\newcommand{\tickno}{\hspace{1pt}\ding{55}}
-
 % 中文标签
 \renewcommand\contentsname{目录}
 \renewcommand\figurename{图}
 \renewcommand\tablename{表}
 \renewcommand\refname{参考文献}
+
+% graphical model
+\usepackage{pst-all} % PSTricks
+\usepackage{com.braju.graphicalmodels}
+\catcode`\@=11%
 
 % footnote
 %\renewcommand{\thefootnote}{\arabic{footnote}}
