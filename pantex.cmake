@@ -48,6 +48,10 @@ macro(pantex)
         file(GLOB PANTEX_BIBS RELATIVE "${CMAKE_BINARY_DIR}" "${CMAKE_BINARY_DIR}/*.bib")
     endif()
 
+    # copy sty file
+    file(GLOB PANTEX_STY_FILES ${PANTEX_DIR}/*.sty)
+    file(COPY ${PANTEX_STY_FILES} DESTINATION ${CMAKE_BINARY_DIR})
+
     # images
     if(NOT PANTEX_IMAGE_DIRS)
         set(PANTEX_IMAGE_DIRS "")
