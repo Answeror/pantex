@@ -51,22 +51,22 @@
 \usepackage{subcaption}
 
 \newsavebox\IBoxA \newsavebox\IBoxB \newlength\IHeight
-\newcommand\TwoSubFig[7]{% CaptionLabel Image1 Caption1Label1 Width1 Image2 ...
-  \sbox\IBoxA{\includegraphics[width=#4\textwidth]{#2}}
-  \sbox\IBoxB{\includegraphics[width=#7\textwidth]{#5}}%
+\newcommand\TwoSubFig[8][H]{% CaptionLabel Image1 Caption1Label1 Width1 Image2 ...
+  \sbox\IBoxA{\includegraphics[width=#5\textwidth]{#3}}
+  \sbox\IBoxB{\includegraphics[width=#8\textwidth]{#6}}%
   \ifdim\ht\IBoxA>\ht\IBoxB
     \setlength\IHeight{\ht\IBoxB}\else\setlength\IHeight{\ht\IBoxA}\fi%
-  \begin{figure}
+  \begin{figure}[#1]
   \centering
-  \begin{subfigure}{#4\textwidth}\centering
-  \includegraphics[height=\IHeight]{#2}
-  #3
+  \begin{subfigure}{#5\textwidth}\centering
+  \includegraphics[height=\IHeight]{#3}
+  #4
   \end{subfigure}\hfill
-  \begin{subfigure}{#7\textwidth}\centering
-  \includegraphics[height=\IHeight]{#5}
-  #6
+  \begin{subfigure}{#8\textwidth}\centering
+  \includegraphics[height=\IHeight]{#6}
+  #7
   \end{subfigure}
-  #1
+  #2
   \end{figure}%
 }
 
